@@ -1,13 +1,11 @@
-### change frequency for changing the output and fixed pwm value.
+## change frequency for changing the output and fixed pwm value.
 import i2cdev
 import numpy
 import time
 
-
 pwm=i2cdev.I2C(0x40,1)
 
-
-'''Reset POWM'''
+# Reset PWM
 pwm.write(bytes([0xFA, 0]))     # zero all pin
 pwm.write(bytes([0xFB, 0]))     # zero all pin
 pwm.write(bytes([0xFC, 0]))     # zero all pin
