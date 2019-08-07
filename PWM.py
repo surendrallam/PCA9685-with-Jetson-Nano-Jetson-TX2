@@ -36,7 +36,7 @@ time.sleep(0.01)
 pwm.write(bytes([0x01, 0x04]))
 time.sleep(0.01)
 
-# Program to set the PWM
+# Program to set the PWM for the channel.
 def set_pwm(channel, value):
   x=min(4095,value)
   x=max(0,x)
