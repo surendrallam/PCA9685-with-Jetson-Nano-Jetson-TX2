@@ -1,9 +1,9 @@
-## change frequency for changing the output and fixed pwm value.
+# change frequency for changing the output and fixed pwm value.
 import i2cdev
 import numpy
 import time
 
-pwm=i2cdev.I2C(0x40,1)
+pwm=i2cdev.I2C(0x40,1) # (PCA9685 address,I2C bus)
 
 # Reset PWM
 pwm.write(bytes([0xFA, 0]))     # zero all pin
@@ -21,7 +21,8 @@ The minimum PWM frequency is 24 Hz if the PRE_SCALE register is set "0xFFh".
 he PRE_SCALE register can only be set when the SLEEP bit of MODE1 register is set to logic 1.
 '''
 
-freq_hz=100 # change frequency for changing the output and fixed pwm value.
+# Program to set the Duty cycle and frequency of PWM.
+freq_hz=100 # Frequency of PWM 
 freq_hz=freq_hz*0.9 #correction
 prescale = int(numpy.floor(25000000.0/(4096.0*float(freq_hz))-1))    # datasheet equation
 print("prescale = " , prescale )
@@ -35,6 +36,7 @@ time.sleep(0.01)
 pwm.write(bytes([0x01, 0x04]))
 time.sleep(0.01)
 
+# Program to set the PWM
 def set_pwm(channel, value):
   x=min(4095,value)
   x=max(0,x)
